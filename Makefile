@@ -16,7 +16,7 @@ PACKAGER ?= yum
 IMGBUILDER ?= buildah
 # Determines whether or not images should be pushed to the local docker daemon when building with
 # a tool other than docker (e.g. when building with buildah)
-IMG_PUSH_TO_DOCKER_DAEMON ?= true
+IMG_PUSH_TO_DOCKER_DAEMON ?= false
 # Defines the sudo command that should be prepended to various build commands when rootless builds are
 # not enabled
 IMGCMDSUDO=
@@ -70,7 +70,8 @@ all: cc-pg-base-image pgimages pg-independent-images
 pg-independent-images: backup pgadmin4 pgbadger pgbasebackuprestore pgbench pgbouncer pgpool
 
 # Build images that require a specific postgres version - ordered for potential concurrent benefits
-pgimages: postgres postgres-ha backrestrestore crunchyadm postgres-gis postgres-gis-ha pgdump pgrestore upgrade
+# pgimages: postgres postgres-ha backrestrestore crunchyadm postgres-gis postgres-gis-ha pgdump pgrestore upgrade
+pgimages: postgres postgres-ha backrestrestore crunchyadm pgdump pgrestore upgrade
 
 #===========================================
 # Targets generating pg-based images
