@@ -37,8 +37,8 @@ RUN if [ "$BASEOS" = "ubi8" ] ; then \
 	${PACKAGER} -qy module disable postgresql ; \
 fi
 
-# No such package postgresql12 when crunchy repos aren't included.
-# Excluding to see what happens without this in the base
+# package postgresql12 is available in the standard postgres repository.
+# This is not used by default in Crunchy's build so commented out for now
 # RUN ${PACKAGER} -y install \
 # 		--setopt=skip_missing_names_on_install=False \
 # 		# --disablerepo=crunchypg* \
