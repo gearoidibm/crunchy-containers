@@ -23,12 +23,15 @@ RUN if [ "$DFSET" = "centos" ] ; then \
         	--setopt=skip_missing_names_on_install=False \
         	openssh-clients \
         	openssh-server \
-        	pgaudit${PG_MAJOR//.} \
-        	crunchy-backrest-${BACKREST_VER} \
+			# pgaudit is an opernsource extenstion, available in cruncy repo and from opensource https://github.com/pgaudit/pgaudit/blob/master/README.md
+        	# pgaudit${PG_MAJOR//.} \
+			# crunchy backrest is crunchy backrest package, regular backrest is available in the primary postgresql repo.  Installed binary has name name.
+        	# crunchy-backrest-${BACKREST_VER} \
         	postgresql${PG_MAJOR//.}-contrib \
         	postgresql${PG_MAJOR//.}-server \
         	postgresql${PG_MAJOR//.}-plpython* \
-        	pgnodemx${PG_MAJOR//.} \
+			# pgnodemx is a crunchy data extension, available in the cruncy repo or can be built from OS.
+        	# pgnodemx${PG_MAJOR//.} \ 
         	$( printf '11\n'${PG_MAJOR} | sort -VC && echo postgresql${PG_MAJOR}-llvmjit ) \
         	psmisc \
         	rsync \
